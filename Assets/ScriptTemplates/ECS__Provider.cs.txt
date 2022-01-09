@@ -1,0 +1,4 @@
+﻿using Morpeh;
+
+public class #SCRIPTNAME# : MonoProvider<{YOUR_COMPONENT}> {
+}
