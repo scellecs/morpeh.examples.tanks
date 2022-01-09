@@ -26,6 +26,7 @@
 
             Entity evtEntity = World.Default.CreateEntity();
             ref CollisionEvent evt = ref evtEntity.AddComponent<CollisionEvent>();
+            evt.collision = other;
             evt.first = listener;
 
             var otherDetector = other.gameObject.GetComponent<CollisionDetector>();
