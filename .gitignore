@@ -7,6 +7,10 @@
 /[Mm]emoryCaptures/
 /[Aa]ssets/AssetStoreTools*
 
+# Project requires Odin Inspector, but it must not be in Git
+/**/Sirenix/
+/**/Sirenix.meta
+
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
 
