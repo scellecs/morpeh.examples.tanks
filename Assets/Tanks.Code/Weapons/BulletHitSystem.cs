@@ -17,7 +17,7 @@
             ref Bullet bullet = ref bulletEntity.GetComponent<Bullet>();
             if (evt.second != null && !evt.second.InSameTeam(bullet.shooter)) {
                 evt.second.SetComponent(new DamageEvent {
-                        hitPosition = evt.collision.GetContact(0).point,
+                        hitPosition = evt.collision?.GetContact(0).point,
                         amount = bullet.config.damage,
                 });
             }
