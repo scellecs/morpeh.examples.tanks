@@ -1,13 +1,13 @@
-﻿using System.Collections;
-using Morpeh;
-using NUnit.Framework;
-using Tanks.Collisions;
-using Tanks.Healthcare;
-using Tanks.Teams;
-using UnityEngine;
-using UnityEngine.TestTools;
+﻿namespace Tanks.Weapons {
+    using System.Collections;
+    using Collisions;
+    using Healthcare;
+    using Morpeh;
+    using NUnit.Framework;
+    using Teams;
+    using UnityEngine;
+    using UnityEngine.TestTools;
 
-namespace Tanks.Weapons {
     public class BulletWeaponsTests : EcsTestFixture {
         private BulletWeaponConfig weaponConfig;
         private Entity tankEntity;
@@ -27,50 +27,56 @@ namespace Tanks.Weapons {
         public void ShouldCreateBullet() {
             Shoot();
 
-            var bullets = testWorld.Filter.With<Bullet>();
+            Filter bullets = testWorld.Filter.With<Bullet>();
             Assert.That(bullets.Length, Is.EqualTo(1));
 
-            var body = bullets.GetEntity(0).GetComponent<Bullet>().body;
+            Rigidbody2D body = bullets.GetEntity(0).GetComponent<Bullet>().body;
             Assert.That(body.gameObject.activeInHierarchy);
         }
 
         [Test]
         public void ShouldIgnoreSelfColliders() {
-            RegisterSystem(CollisionInitSystem.Create());
+            RegisterAdditionalSystems(new ISystem[] {
+                    CollisionInitSystem.Create(),
+            });
+
             RunFixedSystems();
             Shoot();
 
             PhysicsUpdateSystem.Simulate(Time.fixedDeltaTime);
 
-            var events = testWorld.Filter.With<CollisionEvent>();
+            Filter events = testWorld.Filter.With<CollisionEvent>();
             Assert.That(events.Length, Is.EqualTo(0));
         }
 
         [Test]
         public void ShouldShootByDirection() {
-            ref var tank = ref tankEntity.GetComponent<Tank>();
+            ref Tank tank = ref tankEntity.GetComponent<Tank>();
             tank.body.rotation = -90f;
 
             Shoot();
 
-            var body = testWorld.Filter.With<Bullet>().GetEntity(0).GetComponent<Bullet>().body;
+            Rigidbody2D body = testWorld.Filter.With<Bullet>().GetEntity(0).GetComponent<Bullet>().body;
             Assert.That(body.rotation, Is.EqualTo(-90f));
 
-            var velocityAngle = Vector2.SignedAngle(Vector2.up, body.velocity);
+            float velocityAngle = Vector2.SignedAngle(Vector2.up, body.velocity);
             Assert.That(velocityAngle, Is.EqualTo(-90f));
         }
 
         [UnityTest]
         public IEnumerator ShouldDestroyBulletAndCollisionEventOnHit() {
-            RegisterSystem(CollisionCleanSystem.Create());
+            RegisterAdditionalSystems(new ISystem[] {
+                    CollisionCleanSystem.Create(),
+            });
+
             Shoot();
-            var bullets = testWorld.Filter.With<Bullet>();
+            Filter bullets = testWorld.Filter.With<Bullet>();
             Assume.That(bullets.Length, Is.AtLeast(1));
 
-            var bulletEntity = bullets.GetEntity(0);
-            var body = bulletEntity.GetComponent<Bullet>().body;
+            Entity bulletEntity = bullets.GetEntity(0);
+            Rigidbody2D body = bulletEntity.GetComponent<Bullet>().body;
             testWorld.CreateEntity().SetComponent(new CollisionEvent {
-                    first = bulletEntity
+                    first = bulletEntity,
             });
 
             RunFixedSystems();
@@ -84,14 +90,14 @@ namespace Tanks.Weapons {
         [Test]
         public void ShouldApplyDamageTargetOnHit() {
             Shoot();
-            var targetEntity = testWorld.CreateEntity();
-            var bullets = testWorld.Filter.With<Bullet>();
+            Entity targetEntity = testWorld.CreateEntity();
+            Filter bullets = testWorld.Filter.With<Bullet>();
             Assume.That(bullets.Length, Is.AtLeast(1));
 
-            var bulletEntity = bullets.GetEntity(0);
+            Entity bulletEntity = bullets.GetEntity(0);
             testWorld.CreateEntity().SetComponent(new CollisionEvent {
                     first = bulletEntity,
-                    second = targetEntity
+                    second = targetEntity,
             });
 
             RunFixedSystems();
@@ -104,17 +110,17 @@ namespace Tanks.Weapons {
 
         [Test]
         public void ShouldNotDamageSameTeamTarget() {
-            var targetEntity = testWorld.CreateEntity();
+            Entity targetEntity = testWorld.CreateEntity();
             PlaceInOneTeam(tankEntity, targetEntity);
 
             Shoot();
-            var bullets = testWorld.Filter.With<Bullet>();
+            Filter bullets = testWorld.Filter.With<Bullet>();
             Assume.That(bullets.Length, Is.AtLeast(1));
 
-            var bulletEntity = bullets.GetEntity(0);
+            Entity bulletEntity = bullets.GetEntity(0);
             testWorld.CreateEntity().SetComponent(new CollisionEvent {
                     first = bulletEntity,
-                    second = targetEntity
+                    second = targetEntity,
             });
 
             RunFixedSystems();
@@ -125,7 +131,7 @@ namespace Tanks.Weapons {
         [Test]
         public void ShouldNotShootWhenReloading() {
             Shoot();
-            var bullets = testWorld.Filter.With<Bullet>();
+            Filter bullets = testWorld.Filter.With<Bullet>();
             Assume.That(bullets.Length, Is.AtLeast(1));
 
             Shoot();
@@ -137,7 +143,7 @@ namespace Tanks.Weapons {
         public IEnumerator ShouldShootAfterReloading() {
             weaponConfig.reloadTime = 2 * Time.fixedDeltaTime;
             Shoot();
-            var bullets = testWorld.Filter.With<Bullet>();
+            Filter bullets = testWorld.Filter.With<Bullet>();
             Assume.That(bullets.Length, Is.AtLeast(1));
 
             yield return new WaitForSeconds(weaponConfig.reloadTime + 0.01f);
@@ -161,10 +167,10 @@ namespace Tanks.Weapons {
             var tankObject = new GameObject("Tank");
             tankObject.AddComponent<BoxCollider2D>();
 
-            ref var tank = ref tankEntity.AddComponent<Tank>();
+            ref Tank tank = ref tankEntity.AddComponent<Tank>();
             tank.body = tankObject.AddComponent<Rigidbody2D>();
 
-            ref var weapon = ref tankEntity.AddComponent<BulletWeapon>();
+            ref BulletWeapon weapon = ref tankEntity.AddComponent<BulletWeapon>();
             weapon.config = weaponConfig;
             weapon.lastShotTime = Time.time - weapon.config.reloadTime - 0.1f;
         }
@@ -178,20 +184,20 @@ namespace Tanks.Weapons {
         }
 
         private void Shoot() {
-            ref var weapon = ref tankEntity.GetComponent<BulletWeapon>();
+            ref BulletWeapon weapon = ref tankEntity.GetComponent<BulletWeapon>();
             weapon.shoot = true;
             RunFixedSystems();
             weapon.shoot = false;
         }
 
         private void PlaceInOneTeam(Entity firstEntity, Entity secondEntity) {
-            var teamEntity = testWorld.CreateEntity();
+            Entity teamEntity = testWorld.CreateEntity();
             firstEntity.SetComponent(new InTeam {
-                    team = teamEntity
+                    team = teamEntity,
             });
 
             secondEntity.SetComponent(new InTeam {
-                    team = teamEntity
+                    team = teamEntity,
             });
         }
     }

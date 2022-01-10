@@ -1,11 +1,11 @@
-﻿using System.Collections;
-using Morpeh;
-using NUnit.Framework;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.TestTools;
+﻿namespace Tanks {
+    using System.Collections;
+    using Morpeh;
+    using NUnit.Framework;
+    using UnityEngine;
+    using UnityEngine.SceneManagement;
+    using UnityEngine.TestTools;
 
-namespace Tanks {
     [TestFixture]
     public abstract class EcsTestFixture {
         protected World testWorld;
@@ -19,6 +19,8 @@ namespace Tanks {
 
             testSystems = testWorld.CreateSystemsGroup();
             InitSystems(testSystems);
+            testWorld.AddSystemsGroup(0, testSystems);
+            testWorld.Update(0f);
         }
 
         [TearDown]
@@ -32,9 +34,11 @@ namespace Tanks {
 
         [UnityTearDown]
         public IEnumerator SceneTearDown() {
-            var scene = SceneManager.GetActiveScene();
-            foreach (var o in scene.GetRootGameObjects()) {
-                if (o.name.EndsWith("tests runner")) continue;
+            Scene scene = SceneManager.GetActiveScene();
+            foreach (GameObject o in scene.GetRootGameObjects()) {
+                if (o.name.EndsWith("tests runner")) {
+                    continue;
+                }
 
                 Object.Destroy(o);
             }
@@ -44,22 +48,35 @@ namespace Tanks {
 
         protected abstract void InitSystems(SystemsGroup systemsGroup);
 
-        protected void RegisterSystem(ISystem system) {
-            testSystems.AddSystem(system);
+        protected void RegisterAdditionalSystems(ISystem[] systems) {
+            SystemsGroup systemsGroup = testWorld.CreateSystemsGroup();
+            foreach (ISystem system in systems) {
+                systemsGroup.AddSystem(system);
+            }
+
+            testWorld.AddSystemsGroup(1, systemsGroup);
+            testWorld.Update(0f);
         }
 
         protected void RunFixedSystems() {
+            RefreshFilters();
             testWorld.FixedUpdate(Time.fixedDeltaTime);
-            testWorld.UpdateFilters();
+            RefreshFilters();
         }
 
         protected void RunUpdateSystems(float dt) {
+            RefreshFilters();
             testWorld.Update(dt);
-            testWorld.UpdateFilters();
+            RefreshFilters();
         }
 
         protected void RunLateUpdateSystems(float dt) {
+            RefreshFilters();
             testWorld.LateUpdate(dt);
+            RefreshFilters();
+        }
+
+        protected void RefreshFilters() {
             testWorld.UpdateFilters();
         }
     }
