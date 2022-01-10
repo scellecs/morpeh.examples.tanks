@@ -19,15 +19,14 @@
             weapon.lastShotTime = Time.time;
         }
 
-        private void CreateBullet(Entity ent, BulletWeapon weapon, Tank tank) {
+        private void CreateBullet(Entity ent, in BulletWeapon weapon, in Tank tank) {
             Rigidbody2D bulletBody = Instantiate(weapon.config.bulletConfig.prefab, tank.body.position, Quaternion.identity);
             IgnoreSelfCollisions(bulletBody.GetComponent<Collider2D>(), ent);
             bulletBody.gameObject.SetActive(true);
             bulletBody.rotation = tank.body.rotation;
             bulletBody.velocity = Quaternion.Euler(0f, 0f, bulletBody.rotation) * Vector3.up * weapon.config.bulletSpeed;
 
-            Entity bulletEntity = World.CreateEntity();
-            bulletEntity.SetComponent(new Bullet {
+            World.CreateEntity().SetComponent(new Bullet {
                     body = bulletBody,
                     config = weapon.config.bulletConfig,
                     shooter = ent,

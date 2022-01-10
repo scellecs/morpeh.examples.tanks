@@ -19,6 +19,7 @@
                 evt.second.SetComponent(new DamageEvent {
                         hitPosition = evt.collision?.GetContact(0).point,
                         amount = bullet.config.damage,
+                        dealer = bullet.shooter,
                 });
             }
 
