@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc65adb9cc4141779cef5699b4bf1c9d, type: 3}
   m_Name: Team Base Destroy System
   m_EditorClassIdentifier: 
+  destroyedColor: {r: 0, g: 0, b: 0, a: 1}

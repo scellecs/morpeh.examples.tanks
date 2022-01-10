@@ -6,6 +6,8 @@
 
     [CreateAssetMenu(menuName = "ECS/Systems/" + nameof(TeamBaseDestroySystem))]
     public sealed class TeamBaseDestroySystem : UpdateSystem {
+        public Color destroyedColor = Color.black;
+
         private Filter destroyedBases;
 
         public override void OnAwake() {
@@ -14,9 +16,12 @@
 
         public override void OnUpdate(float deltaTime) {
             foreach (Entity ent in destroyedBases) {
-                Entity teamEntity = ent.GetComponent<InTeam>().team;
-                teamEntity.AddComponent<LosingTeam>();
-                ent.GetComponent<TeamBase>().view.SetColor(Color.black);
+                Entity team = ent.GetComponent<InTeam>().team;
+                if (team.Has<LosingTeam>())
+                    continue;
+
+                team.AddComponent<LosingTeam>();
+                ent.GetComponent<TeamBase>().view.SetColor(destroyedColor);
             }
         }
 
