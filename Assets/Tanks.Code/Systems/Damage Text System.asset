@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5219541b6a5489aa84726bd419656e9, type: 3}
   m_Name: Damage Text System
   m_EditorClassIdentifier: 
-  duration: 1.5
-  velocity: {x: 0, y: 0.3, z: 0}
-  charSize: 0.2
-  fontSize: 12
-  font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  textRequest:
+    font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    fontSize: 12
+    charSize: 0.2
+    color: {r: 1, g: 0.5, b: 0, a: 1}
+    start: {x: 0, y: 0, z: 0}
+    text: 
+    velocity: {x: 0, y: 0.3, z: 0}
+    duration: 1.5
