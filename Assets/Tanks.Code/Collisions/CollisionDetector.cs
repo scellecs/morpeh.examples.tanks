@@ -7,6 +7,12 @@
         public Collider2D[] colliders;
         public Entity listener;
 
+        private World world;
+
+        public void Init(World world) {
+            this.world = world;
+        }
+
         private void OnEnable() {
             colliders = GetComponentsInChildren<Collider2D>();
 
@@ -24,7 +30,7 @@
             }
 #endif
 
-            Entity evtEntity = World.Default.CreateEntity();
+            Entity evtEntity = world.CreateEntity();
             ref CollisionEvent evt = ref evtEntity.AddComponent<CollisionEvent>();
             evt.collision = other;
             evt.first = listener;

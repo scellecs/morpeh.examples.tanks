@@ -54,9 +54,10 @@
             }
         }
 
-        private static void MakeCanCollide(Entity entity, GameObject gameObject) {
+        private void MakeCanCollide(Entity entity, GameObject gameObject) {
             ref CanCollide canCollide = ref entity.AddComponent<CanCollide>();
             canCollide.detector = gameObject.AddComponent<CollisionDetector>();
+            canCollide.detector.Init(World);
             canCollide.detector.listener = entity;
         }
 
