@@ -8,7 +8,7 @@
 
     [CreateAssetMenu(menuName = "ECS/Systems/" + nameof(BulletHitSystem))]
     public sealed class BulletHitSystem : SimpleFixedUpdateSystem<CollisionEvent> {
-        protected override void Process(Entity ent, ref CollisionEvent evt, float dt) {
+        protected override void Process(Entity ent, ref CollisionEvent evt, in float dt) {
             if (!evt.first.Has<Bullet>()) {
                 return;
             }

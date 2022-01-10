@@ -5,7 +5,7 @@
 
     [CreateAssetMenu(menuName = "ECS/Systems/" + nameof(MovementSystem))]
     public class MovementSystem : SimpleFixedUpdateSystem<Tank, MoveDirection> {
-        protected override void Process(Entity ent, ref Tank tank, ref MoveDirection moveDirection, float dt) {
+        protected override void Process(Entity ent, ref Tank tank, ref MoveDirection moveDirection, in float dt) {
             Vector2 direction = moveDirection.direction;
             Vector2 velocity = tank.config.speed * direction;
             tank.body.velocity = velocity;

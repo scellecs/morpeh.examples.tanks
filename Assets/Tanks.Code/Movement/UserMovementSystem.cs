@@ -6,11 +6,9 @@
 
     [CreateAssetMenu(menuName = "ECS/Systems/" + nameof(UserMovementSystem))]
     public class UserMovementSystem : SimpleUpdateSystem<MoveDirection, ControlledByUser> {
-        protected override void Process(Entity ent, ref MoveDirection _, ref ControlledByUser controlledByUser, float dt) {
+        protected override void Process(Entity ent, ref MoveDirection moveDirection, ref ControlledByUser controlledByUser, in float dt) {
             InputActions inputActions = controlledByUser.user.GetComponent<GameUser>().inputActions;
-            ent.SetComponent(new MoveDirection {
-                    direction = inputActions.Tank.Movement.ReadValue<Vector2>(),
-            });
+            moveDirection.direction = inputActions.Tank.Movement.ReadValue<Vector2>();
         }
 
         public static UserMovementSystem Create() {

@@ -6,7 +6,7 @@
 
     [CreateAssetMenu(menuName = "ECS/Systems/" + nameof(BulletWeaponSystem))]
     public sealed class BulletWeaponSystem : SimpleFixedUpdateSystem<BulletWeapon, Tank> {
-        protected override void Process(Entity ent, ref BulletWeapon weapon, ref Tank tank, float dt) {
+        protected override void Process(Entity ent, ref BulletWeapon weapon, ref Tank tank, in float dt) {
             if (!weapon.shoot) {
                 return;
             }
