@@ -8,7 +8,7 @@
         private Filter filter;
 
         public override void OnAwake() {
-            filter = World.Filter.With<TeamBase>().With<InTeam>().Without<Initialized>();
+            filter = World.Filter.With<TeamBase>().With<InTeam>().Without<InitializedMarker>();
         }
 
         public override void OnUpdate(float deltaTime) {
@@ -16,11 +16,14 @@
                 Entity teamEntity = ent.GetComponent<InTeam>().team;
                 Color teamColor = teamEntity.GetComponent<Team>().color;
                 ent.GetComponent<TeamBase>().view.SetColor(teamColor);
+                ent.AddComponent<InitializedMarker>();
             }
         }
 
         public static TeamBaseInitSystem Create() {
             return CreateInstance<TeamBaseInitSystem>();
         }
+
+        private struct InitializedMarker : IComponent { }
     }
 }
