@@ -13,3 +13,12 @@ MonoBehaviour:
   m_Name: Win Detect System
   m_EditorClassIdentifier: 
   winTimeScale: 0.2
+  winMessageRequest:
+    font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    fontSize: 20
+    charSize: 0.5
+    color: {r: 1, g: 1, b: 1, a: 1}
+    start: {x: 0, y: 0, z: 0}
+    text: 
+    velocity: {x: 0, y: 0, z: 0}
+    duration: 5
