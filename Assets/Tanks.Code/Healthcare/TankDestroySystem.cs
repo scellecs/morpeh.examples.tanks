@@ -8,7 +8,7 @@
         private Filter destroyedTanks;
 
         public override void OnAwake() {
-            destroyedTanks = World.Filter.With<Tank>().With<IsDead>();
+            destroyedTanks = World.Filter.With<Tank>().With<IsDeadMarker>();
         }
 
         public override void OnUpdate(float deltaTime) {

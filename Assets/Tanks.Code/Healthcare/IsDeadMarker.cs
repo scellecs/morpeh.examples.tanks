@@ -3,5 +3,5 @@
     using Morpeh;
 
     [Serializable]
-    public struct IsDead : IComponent { }
+    public struct IsDeadMarker : IComponent { }
 }

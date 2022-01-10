@@ -3,5 +3,5 @@
     using Morpeh;
 
     [Serializable]
-    public struct LosingTeam : IComponent { }
+    public struct LosingTeamMarker : IComponent { }
 }

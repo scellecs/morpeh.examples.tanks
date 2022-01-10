@@ -15,7 +15,7 @@
                 return;
             }
 
-            ent.AddComponent<IsDead>();
+            ent.AddComponent<IsDeadMarker>();
         }
 
         public static DamageSystem Create() {

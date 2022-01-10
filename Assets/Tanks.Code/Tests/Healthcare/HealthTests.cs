@@ -44,7 +44,7 @@ namespace Tanks.Healthcare {
 			});
 			RunUpdateSystems(1f);
 
-			Assert.That(testEntity.Has<IsDead>());
+			Assert.That(testEntity.Has<IsDeadMarker>());
 		}
 
 		[Test]

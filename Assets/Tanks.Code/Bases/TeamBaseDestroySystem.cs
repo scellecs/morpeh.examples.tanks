@@ -11,16 +11,16 @@
         private Filter destroyedBases;
 
         public override void OnAwake() {
-            destroyedBases = World.Filter.With<TeamBase>().With<InTeam>().With<IsDead>();
+            destroyedBases = World.Filter.With<TeamBase>().With<InTeam>().With<IsDeadMarker>();
         }
 
         public override void OnUpdate(float deltaTime) {
             foreach (Entity ent in destroyedBases) {
                 Entity team = ent.GetComponent<InTeam>().team;
-                if (team.Has<LosingTeam>())
+                if (team.Has<LosingTeamMarker>())
                     continue;
 
-                team.AddComponent<LosingTeam>();
+                team.AddComponent<LosingTeamMarker>();
                 ent.GetComponent<TeamBase>().view.SetColor(destroyedColor);
             }
         }

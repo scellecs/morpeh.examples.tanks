@@ -31,7 +31,7 @@
                 }
 
                 string text;
-                if (entity.Has<IsDead>()) {
+                if (entity.Has<IsDeadMarker>()) {
                     text = "IsDead";
                 } else {
                     ref Health health = ref entity.GetComponent<Health>();
