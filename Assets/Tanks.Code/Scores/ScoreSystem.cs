@@ -10,7 +10,7 @@
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
     [CreateAssetMenu(menuName = "ECS/Systems/" + nameof(ScoreSystem))]
-    public sealed class ScoreSystem : Morpeh.LateUpdateSystem {
+    public sealed class ScoreSystem : LateUpdateSystem {
         public TextInWorldSystem.Request killMessage;
 
         private Filter usersToInit;

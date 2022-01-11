@@ -17,8 +17,9 @@
         public override void OnUpdate(float deltaTime) {
             foreach (Entity ent in destroyedBases) {
                 Entity team = ent.GetComponent<InTeam>().team;
-                if (team.Has<LosingTeamMarker>())
+                if (team.Has<LosingTeamMarker>()) {
                     continue;
+                }
 
                 team.AddComponent<LosingTeamMarker>();
                 ent.GetComponent<TeamBase>().view.SetColor(destroyedColor);

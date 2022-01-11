@@ -4,7 +4,7 @@
     using UnityEngine;
 
     [CreateAssetMenu(menuName = "ECS/Systems/" + nameof(MovementSystem))]
-    public class MovementSystem : SimpleFixedUpdateSystem<Tank, MoveDirection> {
+    public sealed class MovementSystem : SimpleFixedUpdateSystem<Tank, MoveDirection> {
         protected override void Process(Entity ent, ref Tank tank, ref MoveDirection moveDirection, in float dt) {
             Vector2 direction = moveDirection.direction;
             Vector2 velocity = tank.config.speed * direction;

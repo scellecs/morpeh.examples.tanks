@@ -3,7 +3,7 @@
     using UnityEngine;
 
     [CreateAssetMenu(menuName = "ECS/Systems/" + nameof(TankMovementInitSystem))]
-    public class TankMovementInitSystem : UpdateSystem {
+    public sealed class TankMovementInitSystem : UpdateSystem {
         private Filter tanksNoMove;
 
         public override void OnAwake() {

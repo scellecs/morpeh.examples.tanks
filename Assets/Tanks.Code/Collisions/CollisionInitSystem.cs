@@ -6,7 +6,7 @@
     using Weapons;
 
     [CreateAssetMenu(menuName = "ECS/Systems/" + nameof(CollisionInitSystem))]
-    public class CollisionInitSystem : FixedUpdateSystem {
+    public sealed class CollisionInitSystem : FixedUpdateSystem {
         private Filter bases;
         private Filter bullets;
         private Filter tanks;

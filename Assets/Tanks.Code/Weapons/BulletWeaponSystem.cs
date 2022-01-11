@@ -20,11 +20,16 @@
         }
 
         private void CreateBullet(Entity ent, in BulletWeapon weapon, in Tank tank) {
-            Rigidbody2D bulletBody = Instantiate(weapon.config.bulletConfig.prefab, tank.body.position, Quaternion.identity);
+            Rigidbody2D bulletBody = Instantiate(weapon.config.bulletConfig.prefab,
+                                                 tank.body.position,
+                                                 Quaternion.identity);
+
             IgnoreSelfCollisions(bulletBody.GetComponent<Collider2D>(), ent);
             bulletBody.gameObject.SetActive(true);
             bulletBody.rotation = tank.body.rotation;
-            bulletBody.velocity = Quaternion.Euler(0f, 0f, bulletBody.rotation) * Vector3.up * weapon.config.bulletSpeed;
+            bulletBody.velocity = Quaternion.Euler(0f, 0f, bulletBody.rotation)
+                                  * Vector3.up
+                                  * weapon.config.bulletSpeed;
 
             World.CreateEntity().SetComponent(new Bullet {
                     body = bulletBody,

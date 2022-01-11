@@ -8,7 +8,7 @@
     using UnityEngine.InputSystem.Users;
 
     [CreateAssetMenu(menuName = "ECS/Systems/" + nameof(GameInputSystem))]
-    public class GameInputSystem : UpdateSystem {
+    public sealed class GameInputSystem : UpdateSystem {
         private Action<InputControl, InputEventPtr> unpairedDeviceUsedDelegate;
         private Filter users;
 
