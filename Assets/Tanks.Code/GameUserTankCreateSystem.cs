@@ -23,13 +23,12 @@
                 ent.AddComponent<UserWithTank>().tank = tankEntity;
                 tankEntity.AddComponent<ControlledByUser>().user = ent;
 
-                if (!ent.Has<InTeam>()) {
+                Entity teamEntity = ent.GetComponent<InTeam>(out bool isInTeam).team;
+                if (!isInTeam) {
                     continue;
                 }
 
-                Entity teamEntity = ent.GetComponent<InTeam>().team;
                 ref Team team = ref teamEntity.GetComponent<Team>();
-
                 Transform tankTransform = provider.transform;
                 int spawnIndex = Random.Range(0, team.spawns.Length);
                 Transform spawn = team.spawns[spawnIndex];

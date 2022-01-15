@@ -39,12 +39,12 @@
         }
 
         private static void IgnoreSelfCollisions(Collider2D bulletCollider, Entity ent) {
-            if (bulletCollider == null || !ent.Has<CanCollide>()) {
+            ref CanCollide canCollide = ref ent.GetComponent<CanCollide>(out bool hasCanCollide);
+            if (bulletCollider == null || !hasCanCollide) {
                 return;
             }
 
-            CollisionDetector detector = ent.GetComponent<CanCollide>().detector;
-            foreach (Collider2D selfCollider in detector.colliders) {
+            foreach (Collider2D selfCollider in canCollide.detector.colliders) {
                 Physics2D.IgnoreCollision(selfCollider, bulletCollider);
             }
         }

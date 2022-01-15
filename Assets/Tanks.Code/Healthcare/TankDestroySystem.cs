@@ -17,8 +17,9 @@
             foreach (Entity ent in destroyedTanks) {
                 IncreaseStatForKiller(ent);
 
-                if (ent.Has<ControlledByUser>()) {
-                    ent.GetComponent<ControlledByUser>().user.RemoveComponent<UserWithTank>();
+                ref ControlledByUser controlledByUser = ref ent.GetComponent<ControlledByUser>(out bool isControlled);
+                if (isControlled) {
+                    controlledByUser.user.RemoveComponent<UserWithTank>();
                 }
 
                 GameObject tankGo = ent.GetComponent<Tank>().body.gameObject;
@@ -28,8 +29,9 @@
         }
 
         private static void IncreaseStatForKiller(Entity ent) {
-            if (ent.Has<DamageEvent>()) {
-                ent.GetComponent<DamageEvent>().dealer?.GetOrCreate<OneMoreKillEvent>();
+            ref DamageEvent damageEvent = ref ent.GetComponent<DamageEvent>(out bool isDamaged);
+            if (isDamaged) {
+                damageEvent.dealer?.GetOrCreate<OneMoreKillEvent>();
             }
         }
 

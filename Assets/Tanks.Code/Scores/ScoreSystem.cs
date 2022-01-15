@@ -37,14 +37,14 @@
                 ref UserScores scores = ref userEntity.GetComponent<UserScores>();
                 scores.totalKills++;
 
-                if (!entity.Has<Tank>()) {
-                    Debug.LogWarning("Able to show kill messages only for Tanks!");
+                ref Tank tank = ref entity.GetComponent<Tank>(out bool isTank);
+                if (!isTank) {
+                    Debug.LogError("Able to show kill messages only for Tanks!");
                     continue;
                 }
 
-                Rigidbody2D tankBody = entity.GetComponent<Tank>().body;
                 TextInWorldSystem.Request request = killMessage;
-                request.start = tankBody.position;
+                request.start = tank.body.position;
                 request.text = $"{scores.totalKills.ToString()} kills";
                 World.CreateEntity().SetComponent(request);
             }

@@ -9,12 +9,12 @@
 
     public static class TeamExtensions {
         public static bool InSameTeam(this Entity first, Entity second) {
-            if (!first.Has<InTeam>() || !second.Has<InTeam>()) {
+            ref InTeam firstInTeam = ref first.GetComponent<InTeam>(out bool firstHasTeam);
+            ref InTeam secondInTeam = ref second.GetComponent<InTeam>(out bool secondHasTeam);
+            if (!firstHasTeam || !secondHasTeam) {
                 return false;
             }
 
-            ref InTeam firstInTeam = ref first.GetComponent<InTeam>();
-            ref InTeam secondInTeam = ref second.GetComponent<InTeam>();
             return firstInTeam.team.Equals(secondInTeam.team);
         }
     }
