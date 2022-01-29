@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.farco.morpeh.helpers": "https://github.com/SH42913/morpeh.helpers.git?path=/Assets/Morpeh.Helpers",
+    "com.farco.morpeh.helpers": "https://github.com/SH42913/morpeh.helpers.git?path=/Assets/Morpeh.Helpers#morpeh-2022",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.2d.tilemap": "1.0.0",
     "com.unity.ide.rider": "1.2.1",
@@ -10,7 +10,7 @@
     "com.unity.test-framework": "1.1.30",
     "com.unity.textmeshpro": "2.1.6",
     "com.unity.ugui": "1.0.0",
-    "com.xcrew.morpeh": "https://github.com/scellecs/morpeh.git",
+    "com.scellecs.morpeh": "https://github.com/scellecs/morpeh.git#2022-major",
     "com.unity.modules.animation": "1.0.0",
     "com.unity.modules.audio": "1.0.0",
     "com.unity.modules.imageconversion": "1.0.0",
