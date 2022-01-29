@@ -44,9 +44,9 @@
         }
 
         private void ProcessRequests() {
-            Filter.ComponentsBag<Request> bag = requests.Select<Request>();
-            for (int i = 0, length = requests.Length; i < length; i++) {
-                SpawnTextInWorld(bag.GetComponent(i));
+            ComponentsCache<Request> cache = World.GetCache<Request>();
+            foreach (Entity entity in requests) {
+                SpawnTextInWorld(cache.GetComponent(entity));
             }
 
             requests.RemoveComponentForAll<Request>();
