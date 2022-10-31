@@ -22,7 +22,7 @@
                 return;
             }
 
-            if (nonLosingTeams.IsEmpty() || nonLosingTeams.Length > 1) {
+            if (nonLosingTeams.IsEmpty() || nonLosingTeams.GetLengthSlow() > 1) {
                 return;
             }
 

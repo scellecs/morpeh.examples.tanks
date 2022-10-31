@@ -28,7 +28,7 @@
             Shoot();
 
             Filter bullets = testWorld.Filter.With<Bullet>();
-            Assert.That(bullets.Length, Is.EqualTo(1));
+            Assert.That(bullets.GetLengthSlow(), Is.EqualTo(1));
 
             Rigidbody2D body = bullets.GetEntity(0).GetComponent<Bullet>().body;
             Assert.That(body.gameObject.activeInHierarchy);
@@ -46,7 +46,7 @@
             PhysicsUpdateSystem.Simulate(Time.fixedDeltaTime);
 
             Filter events = testWorld.Filter.With<CollisionEvent>();
-            Assert.That(events.Length, Is.EqualTo(0));
+            Assert.That(events.GetLengthSlow(), Is.EqualTo(0));
         }
 
         [Test]
@@ -71,7 +71,7 @@
 
             Shoot();
             Filter bullets = testWorld.Filter.With<Bullet>();
-            Assume.That(bullets.Length, Is.AtLeast(1));
+            Assume.That(bullets.GetLengthSlow(), Is.AtLeast(1));
 
             Entity bulletEntity = bullets.GetEntity(0);
             Rigidbody2D body = bulletEntity.GetComponent<Bullet>().body;
@@ -83,7 +83,7 @@
 
             yield return null;
 
-            Assert.That(bullets.Length, Is.EqualTo(0));
+            Assert.That(bullets.GetLengthSlow(), Is.EqualTo(0));
             Assert.That(body == null);
         }
 
@@ -92,7 +92,7 @@
             Shoot();
             Entity targetEntity = testWorld.CreateEntity();
             Filter bullets = testWorld.Filter.With<Bullet>();
-            Assume.That(bullets.Length, Is.AtLeast(1));
+            Assume.That(bullets.GetLengthSlow(), Is.AtLeast(1));
 
             Entity bulletEntity = bullets.GetEntity(0);
             testWorld.CreateEntity().SetComponent(new CollisionEvent {
@@ -115,7 +115,7 @@
 
             Shoot();
             Filter bullets = testWorld.Filter.With<Bullet>();
-            Assume.That(bullets.Length, Is.AtLeast(1));
+            Assume.That(bullets.GetLengthSlow(), Is.AtLeast(1));
 
             Entity bulletEntity = bullets.GetEntity(0);
             testWorld.CreateEntity().SetComponent(new CollisionEvent {
@@ -132,11 +132,11 @@
         public void ShouldNotShootWhenReloading() {
             Shoot();
             Filter bullets = testWorld.Filter.With<Bullet>();
-            Assume.That(bullets.Length, Is.AtLeast(1));
+            Assume.That(bullets.GetLengthSlow(), Is.AtLeast(1));
 
             Shoot();
 
-            Assert.That(bullets.Length, Is.LessThan(2));
+            Assert.That(bullets.GetLengthSlow(), Is.LessThan(2));
         }
 
         [UnityTest]
@@ -144,13 +144,13 @@
             weaponConfig.reloadTime = 2 * Time.fixedDeltaTime;
             Shoot();
             Filter bullets = testWorld.Filter.With<Bullet>();
-            Assume.That(bullets.Length, Is.AtLeast(1));
+            Assume.That(bullets.GetLengthSlow(), Is.AtLeast(1));
 
             yield return new WaitForSeconds(weaponConfig.reloadTime + 0.01f);
 
             Shoot();
 
-            Assert.That(bullets.Length, Is.AtLeast(2));
+            Assert.That(bullets.GetLengthSlow(), Is.AtLeast(2));
         }
 
         private void CreateWeaponConfig() {

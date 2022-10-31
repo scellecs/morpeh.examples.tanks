@@ -1,6 +1,7 @@
 ﻿namespace Tanks.Teams {
     using GameInput;
     using Morpeh;
+    using Morpeh.Helpers;
     using UnityEngine;
 
     [CreateAssetMenu(menuName = "ECS/Systems/" + nameof(GameUserBalanceTeamSystem))]
@@ -14,7 +15,7 @@
         }
 
         public override void OnUpdate(float deltaTime) {
-            if (nonTeamUsers.Length <= 0 || teams.Length <= 0) {
+            if (nonTeamUsers.IsEmpty() || teams.IsEmpty()) {
                 return;
             }
 
@@ -30,17 +31,18 @@
         }
 
         private Entity GetWeakTeam() {
-            var weakTeamIndex = 0;
-            Filter.ComponentsBag<Team> selectedTeams = teams.Select<Team>();
-            int weakTeamUserCount = selectedTeams.GetComponent(weakTeamIndex).userCount;
-            for (var i = 1; i < teams.Length; i++) {
-                ref Team team = ref selectedTeams.GetComponent(i);
+            Entity weakTeam = null;
+            var weakTeamUserCount = int.MaxValue;
+
+            foreach (Entity entity in teams) {
+                ref Team team = ref entity.GetComponent<Team>();
                 if (team.userCount < weakTeamUserCount) {
-                    weakTeamIndex = i;
+                    weakTeam = entity;
+                    weakTeamUserCount = team.userCount;
                 }
             }
 
-            return teams.GetEntity(weakTeamIndex);
+            return weakTeam;
         }
 
         public static GameUserBalanceTeamSystem Create() {
