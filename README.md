@@ -4,7 +4,7 @@ A tank game example using [Morpeh ECS framework](https://github.com/scellecs/mor
 and [Unity Input System](https://github.com/Unity-Technologies/InputSystem). \
 It contains usages of Morpeh Providers and examples of ECS Unit tests.
 
-![image](https://user-images.githubusercontent.com/17111024/148764851-f7c94020-c87f-4a27-b6f5-d8c93624c220.png)
+![image](https://user-images.githubusercontent.com/17111024/210394187-b856a391-34b8-4af9-b6bd-5bcaa0d61c99.png)
 
 The game has local multiplayer: one input device - one player, currently only keyboards and gamepads are supported.
 Be aware, that was just my test job, so the project has no best practices and **must be used only as an example, not as a guide**.
