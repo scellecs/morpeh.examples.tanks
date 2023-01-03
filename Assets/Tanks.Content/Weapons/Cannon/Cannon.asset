@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Cannon
   m_EditorClassIdentifier: 
   bulletConfig: {fileID: 11400000, guid: 0f154862f62f5df439d24d2fae0772c7, type: 2}
-  bulletSpeed: 4
+  bulletSpeed: 5
   reloadTime: 3
