@@ -1,6 +1,7 @@
 ﻿namespace Tanks.Bases {
     using System;
-    using Morpeh;
+    using Scellecs.Morpeh;
+    using Scellecs.Morpeh.Providers;
     using Teams;
     using UnityEngine;
 

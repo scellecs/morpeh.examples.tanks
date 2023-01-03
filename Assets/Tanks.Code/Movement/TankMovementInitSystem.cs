@@ -1,5 +1,6 @@
 ﻿namespace Tanks.Movement {
-    using Morpeh;
+    using Scellecs.Morpeh;
+    using Scellecs.Morpeh.Systems;
     using UnityEngine;
 
     [CreateAssetMenu(menuName = "ECS/Systems/" + nameof(TankMovementInitSystem))]

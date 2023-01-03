@@ -1,8 +1,8 @@
 ﻿namespace Tanks.Weapons {
     using Collisions;
     using Healthcare;
-    using Morpeh;
-    using Morpeh.Helpers;
+    using Scellecs.Morpeh;
+    using Scellecs.Morpeh.Helpers;
     using Teams;
     using UnityEngine;
 

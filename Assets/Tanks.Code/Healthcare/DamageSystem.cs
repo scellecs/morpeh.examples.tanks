@@ -1,6 +1,6 @@
 ﻿namespace Tanks.Healthcare {
-    using Morpeh;
-    using Morpeh.Helpers;
+    using Scellecs.Morpeh;
+    using Scellecs.Morpeh.Helpers;
     using UnityEngine;
 
     [CreateAssetMenu(menuName = "ECS/Systems/" + nameof(DamageSystem))]

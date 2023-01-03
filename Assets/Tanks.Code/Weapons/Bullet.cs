@@ -1,6 +1,6 @@
 ﻿namespace Tanks.Weapons {
     using System;
-    using Morpeh;
+    using Scellecs.Morpeh;
     using UnityEngine;
 
     [Serializable]

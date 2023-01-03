@@ -1,7 +1,7 @@
 ﻿namespace Tanks.Weapons {
     using GameInput;
-    using Morpeh;
-    using Morpeh.Helpers;
+    using Scellecs.Morpeh;
+    using Scellecs.Morpeh.Helpers;
     using UnityEngine;
     using UnityEngine.InputSystem;
 

@@ -1,6 +1,7 @@
 ﻿namespace Tanks.Walls {
     using Healthcare;
-    using Morpeh;
+    using Scellecs.Morpeh;
+    using Scellecs.Morpeh.Systems;
     using UnityEngine;
 
     [CreateAssetMenu(menuName = "ECS/Systems/" + nameof(WallDestroySystem))]

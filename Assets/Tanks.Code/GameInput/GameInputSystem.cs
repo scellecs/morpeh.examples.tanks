@@ -1,6 +1,7 @@
 ﻿namespace Tanks.GameInput {
     using System;
-    using Morpeh;
+    using Scellecs.Morpeh;
+    using Scellecs.Morpeh.Systems;
     using UnityEngine;
     using UnityEngine.InputSystem;
     using UnityEngine.InputSystem.Controls;
@@ -13,7 +14,9 @@
         private Filter users;
 
         public override void OnAwake() {
+            World.GetStash<GameUser>().AsDisposable();
             users = World.Filter.With<GameUser>();
+
             unpairedDeviceUsedDelegate = OnUnpairedDeviceUsed;
             ++InputUser.listenForUnpairedDeviceActivity;
             InputUser.onUnpairedDeviceUsed += unpairedDeviceUsedDelegate;

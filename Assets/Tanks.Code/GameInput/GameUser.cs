@@ -1,6 +1,6 @@
 ﻿namespace Tanks.GameInput {
     using System;
-    using Morpeh;
+    using Scellecs.Morpeh;
     using UnityEngine.InputSystem;
     using UnityEngine.InputSystem.Users;
 

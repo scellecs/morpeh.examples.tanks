@@ -1,7 +1,7 @@
 ﻿namespace Tanks.Healthcare {
     using System;
     using JetBrains.Annotations;
-    using Morpeh;
+    using Scellecs.Morpeh;
     using UnityEngine;
 
     [Serializable]

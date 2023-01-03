@@ -1,6 +1,6 @@
 ﻿namespace Tanks.Collisions {
     using System;
-    using Morpeh;
+    using Scellecs.Morpeh;
 
     [Serializable]
     public struct CanCollide : IComponent {

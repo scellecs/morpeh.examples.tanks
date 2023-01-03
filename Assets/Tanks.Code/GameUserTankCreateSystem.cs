@@ -1,6 +1,8 @@
 ﻿namespace Tanks {
     using GameInput;
-    using Morpeh;
+    using Scellecs.Morpeh;
+    using Scellecs.Morpeh.Providers;
+    using Scellecs.Morpeh.Systems;
     using Teams;
     using UnityEngine;
 

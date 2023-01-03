@@ -1,7 +1,7 @@
 ﻿namespace Tanks {
     using System.Collections;
-    using Morpeh;
     using NUnit.Framework;
+    using Scellecs.Morpeh;
     using UnityEngine;
     using UnityEngine.SceneManagement;
     using UnityEngine.TestTools;
@@ -77,7 +77,7 @@
         }
 
         protected void RefreshFilters() {
-            testWorld.UpdateFilters();
+            testWorld.Commit();
         }
     }
 }

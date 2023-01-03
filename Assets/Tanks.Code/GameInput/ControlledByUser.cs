@@ -1,6 +1,6 @@
 ﻿namespace Tanks.GameInput {
     using System;
-    using Morpeh;
+    using Scellecs.Morpeh;
 
     [Serializable]
     public struct ControlledByUser : IComponent {

@@ -1,7 +1,8 @@
 ﻿namespace Tanks.Healthcare {
     using GameInput;
-    using Morpeh;
-    using Morpeh.Helpers;
+    using Scellecs.Morpeh;
+    using Scellecs.Morpeh.Helpers;
+    using Scellecs.Morpeh.Systems;
     using Scores;
     using UnityEngine;
 
@@ -31,7 +32,7 @@
         private static void IncreaseStatForKiller(Entity ent) {
             ref DamageEvent damageEvent = ref ent.GetComponent<DamageEvent>(out bool isDamaged);
             if (isDamaged) {
-                damageEvent.dealer?.GetOrCreate<OneMoreKillEvent>();
+                damageEvent.dealer?.AddComponent<OneMoreKillEvent>();
             }
         }
 

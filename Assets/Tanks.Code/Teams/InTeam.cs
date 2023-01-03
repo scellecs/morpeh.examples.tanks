@@ -1,6 +1,6 @@
 ﻿namespace Tanks.Teams {
     using System;
-    using Morpeh;
+    using Scellecs.Morpeh;
 
     [Serializable]
     public struct InTeam : IComponent {

@@ -1,8 +1,9 @@
 ﻿namespace Tanks.UtilSystems {
     using System;
     using System.Collections.Generic;
-    using Morpeh;
-    using Morpeh.Helpers;
+    using Scellecs.Morpeh;
+    using Scellecs.Morpeh.Helpers;
+    using Scellecs.Morpeh.Systems;
     using Sirenix.OdinInspector;
     using Unity.IL2CPP.CompilerServices;
     using UnityEngine;
@@ -44,9 +45,9 @@
         }
 
         private void ProcessRequests() {
-            ComponentsCache<Request> cache = World.GetCache<Request>();
+            Stash<Request> cache = World.GetStash<Request>();
             foreach (Entity entity in requests) {
-                SpawnTextInWorld(cache.GetComponent(entity));
+                SpawnTextInWorld(cache.Get(entity));
             }
 
             requests.RemoveComponentForAll<Request>();

@@ -1,6 +1,6 @@
 ﻿namespace Tanks.Collisions {
     using System;
-    using Morpeh;
+    using Scellecs.Morpeh;
     using UnityEngine;
 
     public sealed class CollisionDetector : MonoBehaviour {

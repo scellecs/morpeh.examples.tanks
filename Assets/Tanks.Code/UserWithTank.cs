@@ -1,6 +1,6 @@
 ﻿namespace Tanks {
     using System;
-    using Morpeh;
+    using Scellecs.Morpeh;
 
     [Serializable]
     public struct UserWithTank : IComponent {

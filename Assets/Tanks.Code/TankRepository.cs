@@ -1,5 +1,5 @@
 ﻿namespace Tanks {
-    using Morpeh;
+    using Scellecs.Morpeh.Providers;
     using UnityEngine;
 
     [CreateAssetMenu(fileName = "TankRepository", menuName = "Tanks/TankRepository", order = 0)]

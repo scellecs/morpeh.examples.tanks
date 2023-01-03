@@ -1,5 +1,5 @@
 ﻿namespace Tanks.Movement {
-    using Morpeh;
+    using Scellecs.Morpeh;
     using UnityEngine;
 
     public struct MoveDirection : IComponent {

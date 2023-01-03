@@ -1,7 +1,8 @@
 ﻿namespace Tanks.Scores {
     using GameInput;
-    using Morpeh;
-    using Morpeh.Helpers;
+    using Scellecs.Morpeh;
+    using Scellecs.Morpeh.Helpers;
+    using Scellecs.Morpeh.Systems;
     using Unity.IL2CPP.CompilerServices;
     using UnityEngine;
     using UtilSystems;
@@ -26,12 +27,11 @@
                 entity.AddComponent<UserScores>();
             }
 
+            World.Commit();
             ScoreKills();
         }
 
         private void ScoreKills() {
-            World.UpdateFilters();
-
             foreach (Entity entity in killEvents) {
                 Entity userEntity = entity.GetComponent<ControlledByUser>().user;
                 ref UserScores scores = ref userEntity.GetComponent<UserScores>();

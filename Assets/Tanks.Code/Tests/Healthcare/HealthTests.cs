@@ -1,6 +1,6 @@
 ﻿namespace Tanks.Healthcare {
-    using Morpeh;
     using NUnit.Framework;
+    using Scellecs.Morpeh;
 
     public class HealthTests : EcsTestFixture {
         private Entity testEntity;

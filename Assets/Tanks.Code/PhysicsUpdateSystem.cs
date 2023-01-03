@@ -1,5 +1,5 @@
 ﻿namespace Tanks {
-    using Morpeh;
+    using Scellecs.Morpeh.Systems;
     using UnityEngine;
 
     [CreateAssetMenu(menuName = "ECS/Systems/" + nameof(PhysicsUpdateSystem))]

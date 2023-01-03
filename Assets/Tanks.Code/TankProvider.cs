@@ -1,6 +1,7 @@
 ﻿namespace Tanks {
     using System;
-    using Morpeh;
+    using Scellecs.Morpeh;
+    using Scellecs.Morpeh.Providers;
     using UnityEngine;
 
     [AddComponentMenu("Tanks/Tank")]

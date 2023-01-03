@@ -1,7 +1,7 @@
 ﻿namespace Tanks.Teams {
     using GameInput;
-    using Morpeh;
-    using Morpeh.Helpers;
+    using Scellecs.Morpeh;
+    using Scellecs.Morpeh.Systems;
     using UnityEngine;
 
     [CreateAssetMenu(menuName = "ECS/Systems/" + nameof(GameUserBalanceTeamSystem))]

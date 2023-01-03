@@ -1,7 +1,7 @@
 ﻿namespace Tanks.Teams {
     using GameInput;
-    using Morpeh;
     using NUnit.Framework;
+    using Scellecs.Morpeh;
 
     public class TeamTests : EcsTestFixture {
         protected override void InitSystems(SystemsGroup systemsGroup) {

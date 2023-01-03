@@ -1,6 +1,6 @@
 ﻿namespace Tanks.Healthcare {
     using System;
-    using Morpeh;
+    using Scellecs.Morpeh;
 
     [Serializable]
     public struct IsDeadMarker : IComponent { }
