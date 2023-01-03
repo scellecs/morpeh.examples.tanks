@@ -16,29 +16,35 @@
         }
 
         public override void OnUpdate(float deltaTime) {
-            foreach (Entity ent in filter) {
-                int tankIndex = Random.Range(0, tankRepository.prefabs.Length);
-                EntityProvider tankPrefab = tankRepository.prefabs[tankIndex];
+            foreach (Entity userEntity in filter) {
+                SpawnTankForUser(userEntity, out Entity tankEntity, out Transform tankTransform);
 
-                EntityProvider provider = Instantiate(tankPrefab);
-                Entity tankEntity = provider.Entity;
-                ent.AddComponent<UserWithTank>().tank = tankEntity;
-                tankEntity.AddComponent<ControlledByUser>().user = ent;
-
-                Entity teamEntity = ent.GetComponent<InTeam>(out bool isInTeam).team;
-                if (!isInTeam) {
-                    continue;
+                Entity teamEntity = userEntity.GetComponent<InTeam>(out bool isInTeam).team;
+                if (isInTeam) {
+                    AttachTankToTeam(tankEntity, tankTransform, teamEntity);
+                } else {
+                    Debug.LogError("User without team!");
                 }
-
-                ref Team team = ref teamEntity.GetComponent<Team>();
-                Transform tankTransform = provider.transform;
-                int spawnIndex = Random.Range(0, team.spawns.Length);
-                Transform spawn = team.spawns[spawnIndex];
-                tankTransform.position = spawn.position;
-                tankTransform.rotation = spawn.rotation;
-
-                tankEntity.AddComponent<InTeam>().team = teamEntity;
             }
+        }
+
+        private void SpawnTankForUser(Entity userEntity, out Entity tankEntity, out Transform tankTransform) {
+            int tankIndex = Random.Range(0, tankRepository.prefabs.Length);
+            EntityProvider tankPrefab = tankRepository.prefabs[tankIndex];
+            EntityProvider tankInstance = Instantiate(tankPrefab);
+            tankEntity = tankInstance.Entity;
+            tankTransform = tankInstance.transform;
+            userEntity.AddComponent<UserWithTank>().tank = tankEntity;
+            tankEntity.AddComponent<ControlledByUser>().user = userEntity;
+        }
+
+        private static void AttachTankToTeam(Entity tankEntity, Transform tankTransform, Entity teamEntity) {
+            ref Team team = ref teamEntity.GetComponent<Team>();
+            int spawnIndex = Random.Range(0, team.spawns.Length);
+            Transform spawn = team.spawns[spawnIndex];
+            tankTransform.position = spawn.position;
+            tankTransform.rotation = spawn.rotation;
+            tankEntity.AddComponent<InTeam>().team = teamEntity;
         }
 
         public static GameUserTankCreateSystem Create() {
