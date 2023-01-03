@@ -91,4 +91,7 @@ MonoBehaviour:
   - enabled: 1
     system: {fileID: 11400000, guid: ec8ee871412a43c41a53c4a1379f7fd5, type: 2}
   - enabled: 1
+    system: {fileID: 11400000, guid: 07c6765469040d6499608b188351aaba, type: 2}
+  - enabled: 1
     system: {fileID: 11400000, guid: 574adc3a3817e81438cfbf7753b1d246, type: 2}
+  cleanupSystems: []

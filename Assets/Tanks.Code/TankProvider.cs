@@ -12,5 +12,6 @@
     public struct Tank : IComponent {
         public TankConfig config;
         public Rigidbody2D body;
+        public Vector2 userTextOffset;
     }
 }
