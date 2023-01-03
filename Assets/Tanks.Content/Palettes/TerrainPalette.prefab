@@ -1400,7 +1400,7 @@ GameObject:
   - component: {fileID: 2572161886166989117}
   - component: {fileID: 1894796583904736714}
   m_Layer: 31
-  m_Name: Terrain
+  m_Name: TerrainPalette
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
