@@ -9,6 +9,7 @@
         public InputDevice device;
         public InputActions inputActions;
         public InputUser user;
+        public int id;
 
         public void Dispose() {
             inputActions?.Disable();

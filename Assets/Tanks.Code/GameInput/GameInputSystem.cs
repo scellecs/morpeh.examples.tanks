@@ -11,11 +11,14 @@
     [CreateAssetMenu(menuName = "ECS/Systems/" + nameof(GameInputSystem))]
     public sealed class GameInputSystem : UpdateSystem {
         private Action<InputControl, InputEventPtr> unpairedDeviceUsedDelegate;
+
+        private int userCounter;
         private Filter users;
 
         public override void OnAwake() {
             World.GetStash<GameUser>().AsDisposable();
             users = World.Filter.With<GameUser>();
+            userCounter = 0;
 
             unpairedDeviceUsedDelegate = OnUnpairedDeviceUsed;
             ++InputUser.listenForUnpairedDeviceActivity;
@@ -27,7 +30,6 @@
         }
 
         public override void Dispose() {
-            base.Dispose();
             InputUser.onUnpairedDeviceUsed -= unpairedDeviceUsedDelegate;
             --InputUser.listenForUnpairedDeviceActivity;
 
@@ -48,8 +50,9 @@
 
             Entity userEntity = World.CreateEntity();
             ref GameUser user = ref userEntity.AddComponent<GameUser>();
+            user.id = ++userCounter;
             user.device = control.device;
-            Debug.Log($"{user.device} connected!");
+            Debug.Log($"{user.device} (Id={user.id.ToString()}) connected!");
 
             user.inputActions = actions;
             user.inputActions.Enable();
