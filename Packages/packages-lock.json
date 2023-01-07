@@ -5,7 +5,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "d902a737ffa0f60fb54c96ef29ed2e4d0eaba8cd"
+      "hash": "150c0c3d72a6b43ae0db0e999513a44505e1451b"
     },
     "com.scellecs.morpeh": {
       "version": "https://github.com/scellecs/morpeh.git#master",
