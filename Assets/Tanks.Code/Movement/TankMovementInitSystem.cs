@@ -8,7 +8,7 @@
         private Filter tanksNoMove;
 
         public override void OnAwake() {
-            tanksNoMove = World.Filter.With<Tank>().Without<MoveDirection>();
+            tanksNoMove = World.Filter.With<Tank>().Without<MoveDirection>().Build();
         }
 
         public override void OnUpdate(float deltaTime) {

@@ -46,7 +46,7 @@
 
             SimulatePhysics(Time.fixedDeltaTime);
 
-            Filter events = testWorld.Filter.With<CollisionEvent>();
+            Filter events = testWorld.Filter.With<CollisionEvent>().Build();
             Assert.That(events.GetLengthSlow(), Is.AtLeast(1));
 
             Entity evtEntity = events.GetEntity(0);
@@ -63,7 +63,7 @@
 
             SimulatePhysics(Time.fixedDeltaTime);
 
-            Filter events = testWorld.Filter.With<CollisionEvent>();
+            Filter events = testWorld.Filter.With<CollisionEvent>().Build();
             Assert.That(events.GetLengthSlow(), Is.AtLeast(2));
 
             foreach (Entity evtEnt in events) {
@@ -80,7 +80,7 @@
 
             RunLateUpdateSystems(1f);
 
-            Filter events = testWorld.Filter.With<CollisionEvent>();
+            Filter events = testWorld.Filter.With<CollisionEvent>().Build();
             Assert.That(events.GetLengthSlow(), Is.EqualTo(0));
         }
 

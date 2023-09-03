@@ -9,7 +9,7 @@
         private Filter filter;
 
         public override void OnAwake() {
-            filter = World.Filter.With<TeamBase>().With<InTeam>().Without<InitializedMarker>();
+            filter = World.Filter.With<TeamBase>().With<InTeam>().Without<InitializedMarker>().Build();
         }
 
         public override void OnUpdate(float deltaTime) {

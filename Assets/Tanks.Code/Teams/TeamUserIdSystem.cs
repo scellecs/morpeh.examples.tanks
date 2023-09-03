@@ -16,7 +16,7 @@
 
         public override void OnAwake() {
             World.GetStash<UserIdText>().AsDisposable();
-            tanksToDisplay = World.Filter.With<Tank>().With<ControlledByUser>().Without<UserIdText>();
+            tanksToDisplay = World.Filter.With<Tank>().With<ControlledByUser>().Without<UserIdText>().Build();
         }
 
         public override void OnUpdate(float deltaTime) {

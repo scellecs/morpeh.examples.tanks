@@ -10,8 +10,8 @@
         private Filter teams;
 
         public override void OnAwake() {
-            teams = World.Filter.With<Team>();
-            nonTeamUsers = World.Filter.With<GameUser>().Without<InTeam>();
+            teams = World.Filter.With<Team>().Build();
+            nonTeamUsers = World.Filter.With<GameUser>().Without<InTeam>().Build();
         }
 
         public override void OnUpdate(float deltaTime) {

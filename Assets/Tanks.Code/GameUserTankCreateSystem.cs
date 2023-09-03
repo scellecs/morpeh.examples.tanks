@@ -12,7 +12,7 @@
         private Filter filter;
 
         public override void OnAwake() {
-            filter = World.Filter.With<GameUser>().Without<UserWithTank>();
+            filter = World.Filter.With<GameUser>().Without<UserWithTank>().Build();
         }
 
         public override void OnUpdate(float deltaTime) {

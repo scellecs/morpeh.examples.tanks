@@ -18,8 +18,8 @@
         private Filter texts;
 
         public override void OnAwake() {
-            texts = World.Filter.With<TextInWorld>();
-            requests = World.Filter.With<Request>();
+            texts = World.Filter.With<TextInWorld>().Build();
+            requests = World.Filter.With<Request>().Build();
         }
 
         public override void OnUpdate(float deltaTime) {

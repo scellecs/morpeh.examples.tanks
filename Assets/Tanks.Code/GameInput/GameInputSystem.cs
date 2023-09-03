@@ -17,7 +17,7 @@
 
         public override void OnAwake() {
             World.GetStash<GameUser>().AsDisposable();
-            users = World.Filter.With<GameUser>();
+            users = World.Filter.With<GameUser>().Build();
             userCounter = 0;
 
             unpairedDeviceUsedDelegate = OnUnpairedDeviceUsed;

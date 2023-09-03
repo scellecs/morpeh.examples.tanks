@@ -1,18 +1,18 @@
 {
   "dependencies": {
     "com.farco.morpeh.helpers": {
-      "version": "https://github.com/SH42913/morpeh.helpers.git?path=/Assets/Morpeh.Helpers#master",
+      "version": "https://github.com/SH42913/morpeh.helpers.git?path=/Assets/Morpeh.Helpers#morpeh-2023",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "150c0c3d72a6b43ae0db0e999513a44505e1451b"
+      "hash": "c5615904cd1022abd891dbb0f849d818ba3c672e"
     },
     "com.scellecs.morpeh": {
-      "version": "https://github.com/scellecs/morpeh.git#master",
+      "version": "https://github.com/scellecs/morpeh.git#stage-2023.1",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "41e595db45b20c957e5174ccfbb684d96e962285"
+      "hash": "e536832eaebb1a98000df83f07931f795cea616a"
     },
     "com.unity.2d.sprite": {
       "version": "1.0.0",

@@ -14,10 +14,10 @@
         private Filter walls;
 
         public override void OnAwake() {
-            tanks = World.Filter.With<Tank>().Without<CanCollide>();
-            bullets = World.Filter.With<Bullet>().Without<CanCollide>();
-            walls = World.Filter.With<Wall>().Without<CanCollide>();
-            bases = World.Filter.With<TeamBase>().Without<CanCollide>();
+            tanks = World.Filter.With<Tank>().Without<CanCollide>().Build();
+            bullets = World.Filter.With<Bullet>().Without<CanCollide>().Build();
+            walls = World.Filter.With<Wall>().Without<CanCollide>().Build();
+            bases = World.Filter.With<TeamBase>().Without<CanCollide>().Build();
         }
 
         public override void OnUpdate(float deltaTime) {

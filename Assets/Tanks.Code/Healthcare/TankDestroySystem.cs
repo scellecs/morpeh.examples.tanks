@@ -11,7 +11,7 @@
         private Filter destroyedTanks;
 
         public override void OnAwake() {
-            destroyedTanks = World.Filter.With<Tank>().With<IsDeadMarker>();
+            destroyedTanks = World.Filter.With<Tank>().With<IsDeadMarker>().Build();
         }
 
         public override void OnUpdate(float deltaTime) {
