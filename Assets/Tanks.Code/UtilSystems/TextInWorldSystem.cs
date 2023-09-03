@@ -4,7 +4,7 @@
     using Scellecs.Morpeh;
     using Scellecs.Morpeh.Helpers;
     using Scellecs.Morpeh.Systems;
-    using Sirenix.OdinInspector;
+    using TriInspector;
     using Unity.IL2CPP.CompilerServices;
     using UnityEngine;
 
