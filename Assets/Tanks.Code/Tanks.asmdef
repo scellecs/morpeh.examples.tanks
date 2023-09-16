@@ -1,17 +1,18 @@
 {
-  "name": "Tanks",
-  "references": [
-    "Scellecs.Morpeh",
-    "Morpeh.Helpers",
-    "Unity.InputSystem"
-  ],
-  "includePlatforms": [],
-  "excludePlatforms": [],
-  "allowUnsafeCode": false,
-  "overrideReferences": false,
-  "precompiledReferences": [],
-  "autoReferenced": true,
-  "defineConstraints": [],
-  "versionDefines": [],
-  "noEngineReferences": false
+    "name": "Tanks",
+    "rootNamespace": "",
+    "references": [
+        "Scellecs.Morpeh",
+        "Unity.InputSystem",
+        "TriInspector"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

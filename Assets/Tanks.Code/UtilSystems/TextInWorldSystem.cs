@@ -4,7 +4,7 @@
     using Scellecs.Morpeh;
     using Scellecs.Morpeh.Helpers;
     using Scellecs.Morpeh.Systems;
-    using Sirenix.OdinInspector;
+    using TriInspector;
     using Unity.IL2CPP.CompilerServices;
     using UnityEngine;
 
@@ -18,8 +18,8 @@
         private Filter texts;
 
         public override void OnAwake() {
-            texts = World.Filter.With<TextInWorld>();
-            requests = World.Filter.With<Request>();
+            texts = World.Filter.With<TextInWorld>().Build();
+            requests = World.Filter.With<Request>().Build();
         }
 
         public override void OnUpdate(float deltaTime) {

@@ -18,8 +18,8 @@
         private Filter killEvents;
 
         public override void OnAwake() {
-            usersToInit = World.Filter.With<GameUser>().Without<UserScores>();
-            killEvents = World.Filter.With<OneMoreKillEvent>().With<ControlledByUser>();
+            usersToInit = World.Filter.With<GameUser>().Without<UserScores>().Build();
+            killEvents = World.Filter.With<OneMoreKillEvent>().With<ControlledByUser>().Build();
         }
 
         public override void OnUpdate(float deltaTime) {

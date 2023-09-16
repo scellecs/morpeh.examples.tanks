@@ -13,8 +13,8 @@
         private Filter winMarkers;
 
         public override void OnAwake() {
-            nonLosingTeams = World.Filter.With<Team>().Without<LosingTeamMarker>();
-            winMarkers = World.Filter.With<WinMarker>();
+            nonLosingTeams = World.Filter.With<Team>().Without<LosingTeamMarker>().Build();
+            winMarkers = World.Filter.With<WinMarker>().Build();
         }
 
         public override void OnUpdate(float deltaTime) {

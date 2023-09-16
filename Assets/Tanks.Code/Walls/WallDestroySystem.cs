@@ -9,7 +9,7 @@
         private Filter destroyedWalls;
 
         public override void OnAwake() {
-            destroyedWalls = World.Filter.With<Wall>().With<IsDeadMarker>();
+            destroyedWalls = World.Filter.With<Wall>().With<IsDeadMarker>().Build();
         }
 
         public override void OnUpdate(float deltaTime) {

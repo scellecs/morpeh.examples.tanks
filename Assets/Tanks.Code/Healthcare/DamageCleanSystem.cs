@@ -8,7 +8,7 @@
         private Filter filter;
 
         public override void OnAwake() {
-            filter = World.Filter.With<DamageEvent>();
+            filter = World.Filter.With<DamageEvent>().Build();
         }
 
         public override void OnUpdate(float deltaTime) {

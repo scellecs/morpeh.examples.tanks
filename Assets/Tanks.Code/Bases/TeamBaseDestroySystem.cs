@@ -12,7 +12,7 @@
         private Filter destroyedBases;
 
         public override void OnAwake() {
-            destroyedBases = World.Filter.With<TeamBase>().With<InTeam>().With<IsDeadMarker>();
+            destroyedBases = World.Filter.With<TeamBase>().With<InTeam>().With<IsDeadMarker>().Build();
         }
 
         public override void OnUpdate(float deltaTime) {

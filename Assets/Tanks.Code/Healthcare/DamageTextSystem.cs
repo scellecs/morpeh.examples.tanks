@@ -17,7 +17,7 @@
         private Filter damageEvents;
 
         public override void OnAwake() {
-            damageEvents = World.Filter.With<DamageEvent>().With<Health>();
+            damageEvents = World.Filter.With<DamageEvent>().With<Health>().Build();
         }
 
         public override void OnUpdate(float deltaTime) {

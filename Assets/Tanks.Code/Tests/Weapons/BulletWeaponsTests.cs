@@ -27,7 +27,7 @@
         public void ShouldCreateBullet() {
             Shoot();
 
-            Filter bullets = testWorld.Filter.With<Bullet>();
+            Filter bullets = testWorld.Filter.With<Bullet>().Build();
             Assert.That(bullets.GetLengthSlow(), Is.EqualTo(1));
 
             Rigidbody2D body = bullets.GetEntity(0).GetComponent<Bullet>().body;
@@ -45,7 +45,7 @@
 
             PhysicsUpdateSystem.Simulate(Time.fixedDeltaTime);
 
-            Filter events = testWorld.Filter.With<CollisionEvent>();
+            Filter events = testWorld.Filter.With<CollisionEvent>().Build();
             Assert.That(events.GetLengthSlow(), Is.EqualTo(0));
         }
 
@@ -56,7 +56,7 @@
 
             Shoot();
 
-            Rigidbody2D body = testWorld.Filter.With<Bullet>().GetEntity(0).GetComponent<Bullet>().body;
+            Rigidbody2D body = testWorld.Filter.With<Bullet>().Build().GetEntity(0).GetComponent<Bullet>().body;
             Assert.That(body.rotation, Is.EqualTo(-90f));
 
             float velocityAngle = Vector2.SignedAngle(Vector2.up, body.velocity);
@@ -70,7 +70,7 @@
             });
 
             Shoot();
-            Filter bullets = testWorld.Filter.With<Bullet>();
+            Filter bullets = testWorld.Filter.With<Bullet>().Build();
             Assume.That(bullets.GetLengthSlow(), Is.AtLeast(1));
 
             Entity bulletEntity = bullets.GetEntity(0);
@@ -91,7 +91,7 @@
         public void ShouldApplyDamageTargetOnHit() {
             Shoot();
             Entity targetEntity = testWorld.CreateEntity();
-            Filter bullets = testWorld.Filter.With<Bullet>();
+            Filter bullets = testWorld.Filter.With<Bullet>().Build();
             Assume.That(bullets.GetLengthSlow(), Is.AtLeast(1));
 
             Entity bulletEntity = bullets.GetEntity(0);
@@ -114,7 +114,7 @@
             PlaceInOneTeam(tankEntity, targetEntity);
 
             Shoot();
-            Filter bullets = testWorld.Filter.With<Bullet>();
+            Filter bullets = testWorld.Filter.With<Bullet>().Build();
             Assume.That(bullets.GetLengthSlow(), Is.AtLeast(1));
 
             Entity bulletEntity = bullets.GetEntity(0);
@@ -131,7 +131,7 @@
         [Test]
         public void ShouldNotShootWhenReloading() {
             Shoot();
-            Filter bullets = testWorld.Filter.With<Bullet>();
+            Filter bullets = testWorld.Filter.With<Bullet>().Build();
             Assume.That(bullets.GetLengthSlow(), Is.AtLeast(1));
 
             Shoot();
@@ -143,7 +143,7 @@
         public IEnumerator ShouldShootAfterReloading() {
             weaponConfig.reloadTime = 2 * Time.fixedDeltaTime;
             Shoot();
-            Filter bullets = testWorld.Filter.With<Bullet>();
+            Filter bullets = testWorld.Filter.With<Bullet>().Build();
             Assume.That(bullets.GetLengthSlow(), Is.AtLeast(1));
 
             yield return new WaitForSeconds(weaponConfig.reloadTime + 0.01f);
