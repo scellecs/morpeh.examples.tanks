@@ -1,8 +1,8 @@
 {
   "dependencies": {
     "com.codewriter.triinspector": "https://github.com/codewriter-packages/Tri-Inspector.git",
-    "com.farco.morpeh.helpers": "https://github.com/SH42913/morpeh.helpers.git?path=/Assets/Morpeh.Helpers#morpeh-2023",
-    "com.scellecs.morpeh": "https://github.com/scellecs/morpeh.git#stage-2023.1",
+    "com.farco.morpeh.helpers": "https://github.com/SH42913/morpeh.helpers.git?path=/Assets/Morpeh.Helpers#master",
+    "com.scellecs.morpeh": "https://github.com/scellecs/morpeh.git#main",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.2d.tilemap": "1.0.0",
     "com.unity.ide.rider": "3.0.24",
